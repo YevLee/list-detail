@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<ul></ul>
+	</div>
+<script>
+	$(function(){
+	var data=['1','2','3','4'];
+	function renderUiFunc(renderDom,data){
+		var renderDom=$(renderDom);
+		var htmlStr='';
+			$.each(data,function(index,item){
+				htmlStr+=
+				'<li><a href="detail.html?id='+index+'">'+data[index]+'</a></li>'
+				//'<li class="item"><a href=detail/?id='+index+'>'+data[index]+'</a></li>'
+			});
+			renderDom.html(htmlStr)
+	}
+	renderUiFunc('#app ul',data);
+		$('#app li').each(function(){
+			$(this).on('click',function(){
+				var index=$(this).index();
+				$(this).parent().find('li').eq(index).remove()
+			})
+		})
+	})
+</script>
+</body>
+</html>
